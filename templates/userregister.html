@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/Main.css">
+
+</head>
+<body>
+    <h1>请注册：</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <p><label><input type="text" name="phone" placeholder="手机"></label></p>
+        <p><label><input type="password" name="password" placeholder="密码"></label></p>
+        <p style="text-align: center">注：请设置至少8位包含大小写字母、数字，不含特殊字符的密码</p>
+        <p><button class="but" type="submit">注册</button></p>
+        <p>{{ error_msg }}</p>
+    </form>
+</body>
+</html>

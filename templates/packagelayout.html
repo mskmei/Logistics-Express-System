@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员工作面板</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">物流管理</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href={% url "waiting_info" id %}>待验证</a></li>
+                <li><a href={% url "package_info" id %}>所有物流</a></li>
+                <li><a href={% url "courier_info" id 1 %}>人事管理</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" method="GET">
+                <div class="form-group">
+                    <input type="text" class="form-control" style='width:150px' placeholder="物流号" name="package_id">
+                </div>
+            <button type="submit" class="btn btn-default">查询</button>
+                <select class="form-control" id='city' name="city"
+                                                  onchange="modify(this.value)">
+                    <option value="">不限制</option>{% for key in city %}
+                        <option value={{ key }}>{{ key }}</option>{% endfor %}</select>
+                 <select class="form-control" id='district' name="district"></select>
+                <select class="form-control" name="type">
+                    <option value="">不限制</option>
+                    <option value="depa">出发地</option>
+                    <option value="dest">目的地</option>
+                </select>
+                {% if waiting == 1 %}<div class="form-group">
+                    <select class="form-control" name="status">
+                        <option value="">不限制</option>
+                        <option value="未发货">未发货</option>
+                        <option value="已发货">已发货</option>
+                        <option value="已接单">已接单</option>
+                        <option value="运输中">运输中</option>
+                        <option value="配送中">配送中</option>
+                        <option value="已到站">已到站</option>
+                        <option value="已收货">已收货</option>
+                    </select>
+                </div>
+                {% endif %}
+                <button type="submit" class="btn btn-default">筛选</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">热力数据<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href={% url 'depature_heatmap' %}>出发地区</a></li>
+                        <li><a href={% url 'destination_heatmap' %}>到达地区</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin1/adminlogin">注销</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div>
+    {% block admin_nav %}{% endblock %}
+</div>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.js' %}"></script>
+<script type="text/javascript">
+        function modify(val) {
+            var mapdic = {};
+            {% for m,n in map.items %}
+                mapdic["{{ m }}"] = [];
+                {% for items in n %}mapdic["{{m}}"].push("{{ items }}")
+                {% endfor %}
+            {% endfor %}
+            var district_list = mapdic[val];
+            var target = document.getElementById('district');
+            var options = target.getElementsByTagName("option");
+
+            while (options.length) {
+                target.removeChild(options[0]);
+            }
+            if (district_list) {
+                var option0 = document.createElement("option");
+                var text0 = document.createTextNode('不限制');
+                option0.appendChild(text0);
+                target.appendChild(option0);
+                for (var i = 0; i < district_list.length; i++) {
+                    var option1 = document.createElement("option");
+                    var text1 = document.createTextNode(district_list[i]);
+                    option1.appendChild(text1);
+                    target.appendChild(option1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

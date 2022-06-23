@@ -1,0 +1,25 @@
+{% extends 'station_navigator.html' %}
+{% block station_nav %}
+    <div class="container">
+            <div style="margin-bottom: 10px"></div>
+    <div class="panel panel-default">
+    <div class="panel-heading">在存包裹</div>
+    <table class="table"><tr><td>物流号</td><td>货架</td><td>层数</td><td>到站时间</td><td>取件码</td><td>身份码</td><td>操作</td></tr>
+        {% if station_package %}{% for obj in page_b %}<tr>{% for item in obj.values %}{% if item %}<td>{{ item }}</td>{% else %}<td>暂无</td>{% endif %}{% endfor %}<td><a class="button" href={% url 'station_check' myid id obj.pid %}>核码取件</a></td></tr>{% endfor %}
+        {% else %}<tr>暂无</tr>{% endif %}</table></div>
+    <div style="text-align: center">  <nav style='display:inline-block' aria-label="Page navigation">
+      <ul class="pagination">
+        <li>
+            {% if page_b.has_previous %}<a aria-label="Previous" href={% url 'station_page' myid id 2 page_b.previous_page_number %}><span aria-hidden="true">&laquo;</span></a>
+            {% else %}<a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>{% endif %}
+        </li>
+          {% for p in paginator_b.page_range %}
+              {% if p == page_b.number %}<li><a>{{ p }}</a></li>{% else %}<li><a href={% url 'station_page' myid id 2 p %}>{{ p }}</a></li>{% endif %}{% endfor %}
+        <li>
+            {% if page_b.has_next %}<a aria-label="Next" href={% url 'station_page' myid id 2 page_b.next_page_number %}><span aria-hidden="true">&raquo;</span></a>
+            {% else %}<a aria-label="Next"><span aria-hidden="true">&raquo;</span></a>{% endif %}
+        </li>
+    </ul>
+    </nav>
+    </div>
+{% endblock %}

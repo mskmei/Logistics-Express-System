@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除确认</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+<div style="margin-bottom:13%"></div>
+<div class="jumbotron">
+        <div class="container">
+        <h1><span style="color:yellow" class="glyphicon glyphicon-alert"></span></h1>
+            <p>请问是否删除该条物流？</p>
+    <ul>
+        <li>物流号:{{ pid }}</li>
+        <li>物流内容:{{ content }}</li>
+        <li>发件人手机:{{ phone }}</li>
+        <li>发起时间:{{ start_time }}</li>
+    </ul>
+    <form method="POST">
+        {% csrf_token %}
+        <input class='btn btn-danger' type="submit" value="确认">
+
+    </form><a href={% url 'waiting_info' id %}><button class="btn btn-default">返回</button></a>
+    </div></div>
+</body>
+</html>

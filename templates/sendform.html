@@ -1,0 +1,30 @@
+{% extends 'user_navigator.html' %}
+{% block user_nav %}
+    <div class="container">
+    <div style="margin-bottom: 10px"></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">发起订单</div>
+        <div>
+        <br>
+        <div>
+            <form class='form-horizontal' action="" method="post">
+                {% csrf_token %}
+                <div class="form-group"><label for="1" class="col-sm-2 control-label">包裹内容：</label>
+                    <div class="col-sm-3"><input id='1' type="text" class="form-control" name="content" required="required"></div>
+                </div>
+                <div class="form-group"><label for="2" class="col-sm-2 control-label">发件人身份标识：</label>
+                    <div class="col-sm-3"><input id='2' type="text" class="form-control" name="sender_set" required="required"></div>
+                </div>
+                <div class="form-group"><label for='3' class="col-sm-2 control-label">收件人身份手机：</label>
+                    <div class="col-sm-3"><input id='3' type="text" class="form-control" name="receiver_phone" required="required"></div>
+                </div>
+                <div class="form-group"><label for="4" class="col-sm-2 control-label">收件人身份标识：</label>
+                    <div class="col-sm-3"><input id='4' type="text" class="form-control" name="receiver_set" required="required"></div>
+                </div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input class='btn btn-primary' type="submit" value="确认添加"><br>
+                <p style="text-align: center">{{ error_msg }}</p><br>
+
+            </form>
+        </div>
+        </div></div></div>
+{% endblock %}

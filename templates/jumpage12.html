@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结算确认</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+<div style="margin-bottom:13%"></div>
+<div class="jumbotron">
+        <div class="container">
+        <h1><span style="color:yellow" class="glyphicon glyphicon-alert"></span></h1>
+            <p>确认结算</p>
+    <ul>
+        <li>类型:{{ job }}</li>
+        <li>工号:{{ sid }}</li>
+        <li>姓名:{{ name }}</li>
+        <li>工资:{{ salary }}</li>
+        <li>补贴:{{ money }}</li>
+    </ul>
+    <form method="POST">
+        {% csrf_token %}
+        <input class='btn btn-warning' type="submit" value="确认">
+
+    </form><a href={% if type == 1 %}{% url 'driver_info' id 1 %}{% else %}{% url 'courier_info' id 1 %}{% endif %}><button class="btn btn-default">返回</button></a>
+    </div></div>
+</body>
+</html>

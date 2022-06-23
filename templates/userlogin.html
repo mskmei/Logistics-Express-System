@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>登录邯郸路某快运</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/Main.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/Home.css" />
+</head>
+<body>
+<a class='special' style="font-family:'Open Sans', sans-serif;font-size:20px" href={% url 'homepage' %}>返回</a>
+<h1>您好，请登录</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <p><input placeholder='手机' type="text" name="phone" /></p>
+    <p><input placeholder='密码' type="password" name="password" /></p>
+    <p><button class="but" type="submit">登录</button></p>
+    <p>{{ error_msg }}</p>
+</form>
+<p><a style='background-color:#c7be22;border-color:#c7be22' class="but" href={% url 'user_register' %}>注册</a></p>
+<ul style='opacity:50%' class="cb-slideshow">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

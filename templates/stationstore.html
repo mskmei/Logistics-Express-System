@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pid }}号包裹入站</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+</head>
+<body>
+<div style="margin-bottom:12%"></div>
+<div class="jumbotron">
+        <div class="container">
+    <p>请将该包裹置于第{{ shelf }}货架第{{ layor }}层。</p>
+    <a class="btn btn-default" href={% url "station_page" myid sid 1 1 %}>确认存放</a>
+</body>
+</html>

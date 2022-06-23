@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ pid }}号包裹取出</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/Main.css" />
+</head>
+<body>
+    <h1>您好，请输入身份码</h1><br />
+                   <div>
+                       <form action="" method="POST">
+                           {% csrf_token %}
+                           <div><input type="text" name="picker_id" /></div>
+                           <div><button class='but' type="submit">取件</button></div>
+                       </form>
+                       <p>{{ error_msg }}<p/>
+                   </div><br />
+</body>
+</html>

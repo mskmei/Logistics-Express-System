@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pid }}号包裹结算</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+</head>
+<body style='background:url("/static/img/825.jpg")no-repeat center center fixed;
+                /*兼容浏览器版本*/
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;'>
+<div style="margin-bottom:12%"></div>
+<div class="jumbotron">
+        <div class="container">
+        <h1><span style="color:lightgreen" class="glyphicon glyphicon-ok-circle"></span></h1>
+    <p>该包裹到站时间为{{ arrival_time }}</p><p>取件时间为{{ pick_time }}</p><p>寄存费用为{{ station_price }}元</p>
+    <a class="btn btn-default" href={% url 'station_page' myid sid 2 1 %}>确认</a>
+</body>
+</html>

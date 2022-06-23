@@ -1,0 +1,59 @@
+{% extends "user_navigator.html" %}
+
+{% block user_nav %}
+    <div class="container-fluid">
+        <div style="margin-bottom: 10px"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">我发的件</div>
+            <table class="table">{% if sender_view %}
+                <thead>
+                <tr>
+                    <td>物流号</td>
+                    <td>包裹内容</td>
+                    <td>收件人姓名</td>
+                    <td>收件人手机</td>
+                    <td>物流状态</td>
+                    <td>出发城市</td>
+                    <td>出发区</td>
+                    <td>目标城市</td>
+                    <td>目标区</td>
+                    <td>运费</td>
+                    <td>开始时间</td>
+                    <td>上门取件员手机</td>
+                    <td>取件时间</td>
+                    <td>派件员手机</td>
+                    <td>预计时间</td>
+                </tr>
+                </thead>
+                <tbody>{% for obj in page_s %}
+                    <tr>{% for item in obj %}{% if item %}
+                        <td>{{ item }}</td>{% else %}
+                        <td>暂无</td>{% endif %}{% endfor %}</tr>{% endfor %}
+            {% else %}<p>&nbsp; &nbsp;暂无</p>{% endif %}</tbody>
+            </table>
+        </div>
+        <div style="text-align: center">
+            <nav style="display: inline-block" aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        {% if page_s.has_previous %}
+                            <a aria-label="Previous" href={% url 'user_page' id 2 page_s.previous_page_number %}><span
+                                    aria-hidden="true">&laquo;</span></a>
+                        {% else %}<a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>{% endif %}
+                    </li>
+                    {% for p in paginator_s.page_range %}
+                        {% if p == page_s.number %}
+                            <li><a>{{ p }}</a></li>{% else %}
+                            <li><a href={% url 'user_page' id 2 p %}>{{ p }}</a></li>{% endif %}{% endfor %}
+                    <li>
+                        {% if page_s.has_next %}
+                            <a aria-label="Next" href={% url 'user_page' id 2 page_s.next_page_number %}><span
+                                    aria-hidden="true">&raquo;</span></a>
+                        {% else %}<a aria-label="Next"><span aria-hidden="true">&raquo;</span></a>{% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+{% endblock %}

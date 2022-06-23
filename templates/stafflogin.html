@@ -1,0 +1,24 @@
+﻿{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>员工登录</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/Main.css" />
+</head>
+<body>
+<a class='special' style="font-family:'Open Sans', sans-serif;font-size:20px" href={% url 'homepage' %}>返回</a>
+    <p><h1>员工登录</h1></p>
+                   <div>
+                       <form action="" method="POST">
+                           {% csrf_token %}
+                           <input type="text" placeholder="手机" name="phone" /><br />
+                           <input type="password" placeholder="密码" name="password" /><br>
+                           <div>类型：<select id="type" name="type"><option>--请选择--</option><option value='驿站管理员'>驿站管理员</option><option value='快递员'>快递员</option><option value='货车司机'>货车司机</option></select></div>
+                           <p><button class="but" type="submit">登录</button></p>
+                       </form>
+                       <p>{{ error_msg }}</p>
+                   </div><br />
+</body>
+</html>

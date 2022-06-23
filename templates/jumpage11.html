@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除警告</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+<div style="margin-bottom:12%"></div>
+<div class="jumbotron">
+        <div class="container">
+        <h1><span style="color:crimson" class="glyphicon glyphicon-remove-circle"></span></h1>
+    <p>该条身份还有相关包裹，若要删除，请等待物流信息过期</p>
+    <ul>
+        <li>身份标识:{{ id.iset }}</li>
+        <li>姓名:{{ id.iname }}</li>
+        <li>手机:{{ id.iphone }}</li>
+        <li>地址:{{ id.iaddress }}</li>
+    </ul>
+        <a href={% url 'identity' id.uid %}><button class="btn btn-default">返回</button></a>
+        </div></div>
+</body>
+</html>

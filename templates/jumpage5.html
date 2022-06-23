@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除确认</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+<div style="margin-bottom:12%"></div>
+<div class="jumbotron">
+        <div class="container">
+        <h1><span style="color:yellow" class="glyphicon glyphicon-alert"></span></h1>
+    <p>请问是否删除该条身份？</p>
+    <ul>
+        <li>身份标识:{{ id.iset }}</li>
+        <li>姓名:{{ id.iname }}</li>
+        <li>手机:{{ id.iphone }}</li>
+        <li>地址:{{ id.iaddress }}</li>
+    </ul>
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-default" type="submit" value="确认">确认</button>
+        <a href={% url 'identity' id.uid %}><button class="btn btn-default">返回</button></a>
+    </form></div></div>
+</body>
+</html>

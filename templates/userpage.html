@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ID }}用户界面</title>
+    <script>
+        function receiver(){
+            document.getElementById("demo").innerHTML="<h>我收的件</h>"+
+                "{% if receiver %}<table>{% for obj in receiver %}<tr>{% for item in obj %}<td>{{ item }}</td>{% endfor %}</tr>{% endfor %}<table>"+
+            "{% else %}<p>暂无</p>{% endif %}"
+        }
+        function sender(){
+            document.getElementById("demo").innerHTML="<h>我发的件</h> " +
+                "{% if sender %}<table>{% for obj in sender %}<tr>{% for item in obj %}<td>{{ item }}</td>{% endfor %}</tr>{% endfor %}<table>"+
+            "{% else %}<p>暂无</p>{% endif %}"
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="receiver()">我收的件</button>
+    <button type="button" onclick="sender()">我发的件</button>
+    <p id="demo"></p>
+</body>
+</html>

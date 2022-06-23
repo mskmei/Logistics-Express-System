@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除确认</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+<div style="margin-bottom:12%"></div>
+<div class="jumbotron">
+        <div class="container">
+        <h1><span style="color:yellow" class="glyphicon glyphicon-alert"></span></h1>
+    <p>请问是否删除该员工？</p>
+    <ul>
+        <li>姓名:{{ name }}</li>
+        <li>身份:{{ who }}</li>
+    </ul>
+    <form method="POST">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="确认">
+    </form>
+            <a href={% if who == '快递员' %}{% url 'courier_info' id 1 %}{% elif who == '货车司机' %}{% url 'driver_info' id 1 %}{% elif who == '驿站管理员' %}{% url 'manager_info' id 1 %}{% endif %}><button class="btn btn-default">返回</button></a>
+        </div></div>
+</body>
+</html>

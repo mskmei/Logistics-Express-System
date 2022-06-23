@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>消息提示</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body style='background:url("/static/img/825.jpg")no-repeat center center fixed;
+                /*兼容浏览器版本*/
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;'>
+<div style="margin-bottom:12%"></div>
+<div class="jumbotron">
+        <div class="container">
+        <h1><span style="color:lightgreen" class="glyphicon glyphicon-ok-circle"></span></h1>
+            <p>修改成功！还有<span id="sp">3</span>秒自动跳转至登录界面...</p></div></div>
+    <script>
+        onload=function(){
+            setInterval(go,1000)
+        };
+        var x=2;
+        function go(){
+            if(x>=0){
+                document.getElementById("sp").innerText=x;
+            }
+            else{
+                location.href='/user/login';
+            }
+            x--;
+        }
+    </script>
+</body>
+</html>
